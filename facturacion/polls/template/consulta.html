@@ -20,29 +20,32 @@
 
    <body class="body">
     <div class="container-fluid">
-      <form class="text-center" method="POST" style="padding-bottom: 20px; padding-top: 30px;"> {% csrf_token %}
+      <form id="consulta_producto" class="text-center" method="POST" style="padding-bottom: 20px; padding-top: 30px;"> {% csrf_token %}
         <h3>Ingresa el nombre del producto</h3><br><br>
-        <input class="form-control col-xs-12 col-sm-12 col-md-12" type="text" placeholder="Buscar" aria-label="Search" name="producto" required>
-        <button class="btn btn-success my-2 my-sm-0" type="submit" value="Buscar Producto">Buscar Producto</button>
+        <input class="form-control col-xs-12 col-sm-12 col-md-12" type="text" placeholder="Buscar" aria-label="Search" name="titulo_producto" required>
+        <button class="btn btn-success my-2 my-sm-0" type="submit" value="Buscar_Producto">Buscar Producto</button>
       </form>
 
       <div>
         <table class="table table-striped">
           <thead>
             <tr>
+              
+              <th>Id</th>
               <th>Nombre Producto</th>
+              <th>Cantidad</th>
               <th>Precio</th>
             </tr>
           </thead>
           <tbody>
+            {% for elem in objects%}
             <tr>
-              <td>juan</td>
-              <td>1000</td>
+              <td>{{ elem.idProducto }}</td>
+              <td>{{ elem.Nombre }}</td>
+              <td>{{ elem.Cantidad }}</td>
+              <td>{{ elem.Precio }}</td>
             </tr>
-            <tr>
-              <td>carlos</td>
-              <td>1000</td>
-            </tr>
+             {% endfor %}
           </tbody>
         </table>
       </div>

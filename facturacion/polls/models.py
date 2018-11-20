@@ -6,8 +6,8 @@ class Producto(models.Model):
 		verbose_name = u"Producto"
 		verbose_name_plural  = u"Productos"
 
-	User = models.CharField(max_length=50)
 	idProducto = models.CharField(max_length=20)#segundos
+	Nombre = models.CharField(max_length=50)
 	Cantidad = models.CharField(max_length=20)#segundos
 	Precio= models.CharField(max_length=100)
 	
