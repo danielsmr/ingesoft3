@@ -37,7 +37,12 @@ def Lading(request):
 
 def inicio(request):
 	ctx = {}
-	return render(request, "inicio.html", ctx)
+	return render(request, "cajero.html", ctx)
+
+def Consulta(request):
+	ctx = {}
+	return render(request, "consulta.html", ctx)
+
 
 def Sign_out(request):
 	logout(request)
