@@ -1,64 +1,55 @@
 <!doctype html>
 <html lang="ES">
   <head>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>Facturacion | {% block head_title %} Inicio {% endblock %}</title>
 
-    <!-- Bootstrap core CSS -->
-   
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <!-- Optional theme -->
+    <!-- Loggin CSS -->
+    <link rel="stylesheet" type="text/css" href="css/login.css">
       
-
-    <!-- Custom styles for this template -->
   </head>
+  <!--*********************Inicia el contenido***********************************************************-->
 
-   <body class="body">
+  <div>
+      <div class="container mt-200">
+          <div class="row">
+              <div class="col justify-content-center">
+                      <div class="jumbotron text-md-center pt-4 pb-4" id="boxlogin">
+                          <h1 class="display-3 text-lg-center">¡Bienvenido!</h1>
+                          <hr class="my-2">
+                          <form method="POST" name="flogin" id="flogin" >{% csrf_token %}
+                            <label class="float-left"><b>Usuario :</b></label>
+                            <input type="text" name="username" placeholder="Ingrese el nombre de usuario" id="username" class="form-control"><br>
+                            <label class="float-left"><b>Contraseña :</b></label>
+                            <input type="password" name="password" placeholder="Ingrese la contraseña" id="password" class="form-control">
+                            {% if msg %}
+                            {{ msg }} <br>
+                            {% endif %}
+                            <div class="row justify-content-center">
+                              <input type="submit" class="btn btn-success pl-4 pr-4 pt-2 pb-2 " value="Iniciar Sesión"><br>
+                            </div>
+                          </form>
+                  </div>         
+              </div>
+          </div>  
+      </div>
+  </div>
 
-    <form method="POST">{% csrf_token %}   
-        
-        <h2><label class=" col-sm-offset-4">Iniciar Sesion</label></h2>
-        <br>
-        <div class="form-group row">
-          <label class="col-sm-1 col-sm-offset-3">nombre de usuario</label>
-            <div class="col-sm-3">
-              <input class="form-control row" placeholder="user name" required name="username">
-            </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-sm-1 col-sm-offset-3">contraseña</label>
-            <div class="col-sm-3">
-            <input class="form-control row "placeholder="password" type="password" required name="password">
-            {% if msg %}
-              {{ msg }} <br>
-            {% endif %}
-          </div>
-        </label>
-
-          <br>
-        <div class="form-group row">
-            <div class="col-sm-4 col-sm-offset-3">
-              <button class=" btn btn-lg btn-success btn-block" type="submit">Iniciar Sesión</button>
-            </div>
-        </div>
-  
-    </form>
-
-
-
-
-
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
-
-
-
+<!--*********************Finaliza el contenido***********************************************************-->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="js/jquery-3.3.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js" ></script>
 
   </body>
 </html>

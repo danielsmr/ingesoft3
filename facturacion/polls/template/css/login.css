@@ -1,0 +1,31 @@
+html{
+    margin:  0 px;
+    padding: 0 px;
+    /*background-color: lightcyan;*/ 
+}
+
+#boxlogin{
+    border-radius: 15px;
+    margin: 10px auto ;
+    width: 500px      ;
+    background-color: rgb(51, 119, 223);
+    box-shadow: 4px 4px rgb(49, 87, 100);
+}
+
+a:link{
+  
+}
+
+a:hover{
+ 
+}
+
+a:active{
+    
+}
+
+input[type="submit"]{
+    margin-top: 25px;    
+}
+
+
