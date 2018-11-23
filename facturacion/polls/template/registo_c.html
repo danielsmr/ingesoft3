@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ES">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Registro Clientes | {% block head_title %} Inicio {% endblock %}</title>
+
+    <!-- Bootstrap core CSS -->
+   
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!-- Optional theme -->
+      
+
+    <!-- Custom styles for this template -->
+  </head>
+
+   <body class="body">
+    <div class="container-fluid">
+      <form method="POST" id="register_form" action="{% url 'Registro_c' %}">{% csrf_token %}
+                 
+                  <h2 class="col-sm-offset-5"><b >Registrar Cliente</b></h2><br>
+
+                   <div class="form-group row">
+                      <label for="idCliente" class="col-sm-3 control-label">ID Cliente</label>
+                      <div class="col-sm-8">
+                          <input name="idCliente" type="text" id="idCliente" placeholder="idCliente" class="form-control" required>
+                      </div>
+                    </div>
+                  <div class="form-group row">
+
+                      <label for="firstName" class="col-sm-3 control-label">Nombre Completo</label>
+                      <div class="col-sm-4">
+                          <input type="text" name="first_name" id="firstName" placeholder="Nombre" class="form-control" autofocus required>
+                      </div>
+                      <div class="col-sm-4">
+                          <input type="text" name="last_name" id="lastName" placeholder="Apellido" class="form-control" autofocus required>
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                      <label for="cedula" class="col-sm-3 control-label">Cedula</label>
+                      <div class="col-sm-8">
+                          <input name="cedula" type="text" id="cedula" placeholder="Cedula" class="form-control" required>
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                      <label for="direccion" class="col-sm-3 control-label">Direccion</label>
+                      <div class="col-sm-8">
+                          <input name="direccion" type="text" id="direccion" placeholder="Direccion" class="form-control" required>
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                      <label for="email" class="col-sm-3 control-label">Email</label>
+                      <div class="col-sm-8">
+                          <input name="email" type="text" id="email" placeholder="Email" class="form-control" required>
+                      </div>
+                  </div>
+                    <div class="form-group ">
+                        <div class="col-sm-8 col-sm-offset-3">
+                            <button id="btnhabilita" type="submit"  class="btn btn-success btn-block">Registrar</button>
+                        </div>
+                    </div>
+                  </div>  
+              </form>
+
+
+              <div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              
+              <th>Id</th>
+              <th>Nombre Producto</th>
+              <th>Cantidad</th>
+              <th>Precio</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for elem in objects%}
+            <tr>
+    
+              <td>{{ elem.idCliente }}</td>
+              <td>{{ elem.first_name }} {{elem.last_name }}</td>
+              <td>{{ elem.direccion }}</td>
+              <td>{{ elem.email }}</td>
+              
+            </tr>
+             {% endfor %}
+            
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+
+
+
+
+  </body>
+</html>
