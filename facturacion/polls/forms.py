@@ -1,9 +1,11 @@
 from django import forms
-from .models import Producto, Cliente
+from .models import Producto, Cliente,Vendedor
 
 class Login_Form(forms.Form):
 	username = forms.CharField(max_length=50)
 	password = forms.CharField(max_length=50)
+class Login_ven(forms.Form):
+	cedula = forms.CharField(max_length=50) 
 
 class Consulta_nombre(forms.Form):
 	titulo_Producto = forms.CharField(max_length=200)
@@ -20,3 +22,12 @@ class Registro(forms.Form):
 	class Meta:
 		model = Cliente
 		fields=['idCliente', 'first_name', 'last_name', 'direccion', 'email']
+
+class Vendedor_form(forms.Form):
+	Cedula = forms.CharField(max_length=20)#segundos
+	Nombre = forms.CharField(max_length=50)
+	direccion = forms.CharField(max_length=20)#segundos
+	telefono= forms.CharField(max_length=100)
+	class Meta:
+		model = Vendedor
+		fields=['Cedula', 'Nombre', 'direccion', 'telefono']

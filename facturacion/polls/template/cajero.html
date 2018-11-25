@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="ES">
   <head>
@@ -21,9 +22,9 @@
    <body class="body">
 
   
-      <button class="btn btn-lg btn-success btn-block" type="submit">Registrar Ventas</button>
+      <a href="{% url 'Registro_v' %}"><button class="btn btn-lg btn-success btn-block" type="submit">Registrar Ventas</button></a>
       <a href="{% url 'Consulta' %}"><button class="btn btn-lg btn-success btn-block" type="submit">Consultar</button></a>
-      <button class="btn btn-lg btn-success btn-block" type="submit">Registrar Clientes</button>
+      <a href="{% url 'Registro_c' %}"><button class="btn btn-lg btn-success btn-block" type="submit">Registrar Clientes</button></a>
       <a href="{% url 'Adios' %}"><button class="btn btn-lg btn-danger btn-block" type="submit">Cerrar Session</button></a>
      
 

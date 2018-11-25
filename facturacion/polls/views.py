@@ -2,14 +2,93 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http import HttpResponse
-from .forms import Login_Form, Consulta_nombre, Registro
+from .forms import Login_Form, Consulta_nombre, Registro, Login_ven, Vendedor_form
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
-from .models import Producto, Cliente
+from .models import Producto, Cliente, Vendedor
 from django.shortcuts import redirect
 import json
 
 def Lading(request):
+	ctx = {}
+	return render(request, "landing.html", ctx)
+
+def Vendedor_log(request):
+	ctx = {}
+	login_form = Login_ven(request.POST or None)
+	msg = ''
+	if login_form.is_valid():
+		form_data = login_form.cleaned_data
+		cedula = form_data.get('cedula')
+		print (cedula)
+		try:
+			user = Vendedor.objects.get(Cedula=cedula)
+		except Vendedor.DoesNotExist:
+			user = None
+		if user is not None:
+			user = authenticate(Cedula=cedula)
+			login(request, user)
+			return redirect("/menu")
+			
+		else: 
+			msg = 'No existe Usuario'
+
+	ctx = {
+		'login_form' : login_form,
+		'msg' : msg,
+	}
+	return render(request, "index.html", ctx)
+
+def menu_ad(request):
+	ctx = {}
+	return render (request, "menu.html", ctx)
+
+def registar_vendedores(request):
+	ctx={}
+
+	register_form = Vendedor_form(request.POST or None)
+
+	if register_form.is_valid():
+		print("entro")
+		form_data = register_form.cleaned_data
+
+		Cedula = form_data.get("Cedula")
+		
+		Nombre = form_data.get("Nombre")
+		print(Nombre)
+		direccion = form_data.get("direccion")
+		print(direccion)
+		telefono = form_data.get("telefono")
+
+		vendedor = Vendedor.objects.create(Cedula=Cedula, Nombre=Nombre,  direccion=direccion,  telefono=telefono)
+		print("guardado")
+		return redirect("/menu")
+
+
+
+
+
+	objects = Vendedor.objects.all()
+
+	for cont in objects:	
+		
+		objects_cedula=cont.Cedula
+		objects_nombre=cont.Nombre
+		objects_direccion=cont.direccion
+		objects_telefono=cont.telefono
+			
+	ctx = {
+		"objects":objects,
+		"objects_cedula":objects_cedula,
+		"objects_nombre":objects_nombre,
+		"objects_direccion":objects_direccion,
+		"objects_telefono":objects_telefono,
+		'register_form': register_form
+	}
+
+	return render (request, "registrar_vendedores.html", ctx)
+
+def Administrador(request):
 	login_form = Login_Form(request.POST or None)
 	msg = ''
 	if login_form.is_valid():
@@ -25,7 +104,7 @@ def Lading(request):
 			user = authenticate(username=username, password=password)
 			if user is not None:
 				login(request, user)
-				return redirect("/Cajero")
+				return redirect("/menu")
 			else:
 				msg = 'Contraseña incorrecta'
 		else: 
@@ -35,16 +114,17 @@ def Lading(request):
 		'login_form' : login_form,
 		'msg' : msg,
 	}
-	return render(request, "index.html", ctx)
+
+	return render(request, "admin.html", ctx)
 
 def inicio(request):
 	ctx = {}
 	return render(request, "cajero.html", ctx)
 
 
-def registro_ventas(request):
-
-	return render(request, "registo_v.html", ctx)
+def Registro_ventas(request):
+	ctx = {}
+	return render(request, "registro_v.html", ctx)
 
 
 def Registro_clientes(request):
@@ -77,7 +157,7 @@ def Registro_clientes(request):
 		objects_nombre=cont.first_name
 		objects_snombre=cont.last_name
 		objects_cantidad=cont.direccion
-		objects_precio=cont.direccion
+		objects_precio=cont.email
 			
 	ctx = {
 		"objects":objects,

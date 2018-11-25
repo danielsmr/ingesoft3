@@ -10,6 +10,16 @@ class Producto(models.Model):
 	Nombre = models.CharField(max_length=50)
 	Cantidad = models.CharField(max_length=20)#segundos
 	Precio= models.CharField(max_length=100)
+
+class Vendedor(models.Model):
+	class Meta:
+		verbose_name = u"Vendedor"
+		verbose_name_plural  = u"Vendedores"
+
+	Cedula = models.CharField(max_length=20, unique=True)#segundos
+	Nombre = models.CharField(max_length=50)
+	direccion = models.CharField(max_length=20)#segundos
+	telefono= models.CharField(max_length=100)
 	
 
 class Cliente(models.Model):
