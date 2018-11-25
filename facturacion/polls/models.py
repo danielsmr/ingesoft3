@@ -40,12 +40,29 @@ class Cliente(models.Model):
 	def get_short_name(self):
 		return self.first_name
 
-class Facturas(models.Model):
+class Factura(models.Model):
 	NumeroFactura = models.CharField(max_length=20, unique=True)#segundos
 	nitEmpresa = models.CharField(max_length=50)
 	cedula = models.CharField(max_length=50)
 	nombre = models.CharField(max_length=50)
 	direccion=models.CharField(max_length=50)
-	email=models.CharField(max_length=50)	
+	email=models.CharField(max_length=50)
+	
+	class meta:
+		verbose_name= u'Factura'
+		verbose_name_plural=u'Facturas'
+
+
+
+class articulo(models.Model):
+	
+	idProducto = models.CharField(max_length=20)#segundos
+	Nombre = models.CharField(max_length=50)
+	Nombre = models.CharField(max_length=50)
+	Cantidad = models.CharField(max_length=20)#segundos
+	Precio= models.CharField(max_length=100)
+	class meta:
+		verbose_name= u'Articulo'
+		verbose_name_plural=u'Articulos'
 
 

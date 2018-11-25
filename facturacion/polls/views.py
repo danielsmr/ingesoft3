@@ -19,15 +19,21 @@ def Vendedor_log(request):
 	if login_form.is_valid():
 		form_data = login_form.cleaned_data
 		username = form_data.get('Cedula')
-		objects =Vendedor.objects.filter(Cedula=username)[0]
-		aux=int(objects.Cedula)
-		aux_user=int(username)
-		if aux == aux_user :
-			print("entro")
-			return redirect("/Cajero")
+		objects=""
+		try:
+			objects =Vendedor.objects.filter(Cedula=username)[0]
+			aux=int(objects.Cedula)
+			aux_user=int(username)
+			if aux == aux_user :
+				print("entro")
+				return redirect("/Cajero")
 
-		else:
+			else:
+				msg= "No existe el vendedor"
+		except:
 			msg= "No existe el vendedor"
+
+			
 	ctx = {
 		'login_form' : login_form,
 		'msg' : msg,
@@ -105,6 +111,7 @@ def inicio(request):
 
 def Registro_ventas(request):
 	ctx = {}
+	
 	return render(request, "registro_v.html", ctx)
 
 
