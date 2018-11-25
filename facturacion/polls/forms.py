@@ -4,11 +4,15 @@ from .models import Producto, Cliente,Vendedor
 class Login_Form(forms.Form):
 	username = forms.CharField(max_length=50)
 	password = forms.CharField(max_length=50)
+
 class Login_ven(forms.Form):
-	cedula = forms.CharField(max_length=50) 
+	Cedula = forms.CharField(max_length=50) 
+	class Meta:
+		model = Vendedor
+		fields = ['Cedula']
 
 class Consulta_nombre(forms.Form):
-	titulo_Producto = forms.CharField(max_length=200)
+	Nombre = forms.CharField(max_length=200)
 	class Meta:
 		model = Producto
 		fields=['Nombre']

@@ -14,29 +14,25 @@ def Lading(request):
 	return render(request, "landing.html", ctx)
 
 def Vendedor_log(request):
-	ctx = {}
 	login_form = Login_ven(request.POST or None)
 	msg = ''
 	if login_form.is_valid():
 		form_data = login_form.cleaned_data
-		cedula = form_data.get('cedula')
-		print (cedula)
-		try:
-			user = Vendedor.objects.get(Cedula=cedula)
-		except Vendedor.DoesNotExist:
-			user = None
-		if user is not None:
-			user = authenticate(Cedula=cedula)
-			login(request, user)
-			return redirect("/menu")
-			
-		else: 
-			msg = 'No existe Usuario'
+		username = form_data.get('Cedula')
+		objects =Vendedor.objects.filter(Cedula=username)[0]
+		aux=int(objects.Cedula)
+		aux_user=int(username)
+		if aux == aux_user :
+			print("entro")
+			return redirect("/Cajero")
 
+		else:
+			msg= "No existe el vendedor"
 	ctx = {
 		'login_form' : login_form,
 		'msg' : msg,
 	}
+
 	return render(request, "index.html", ctx)
 
 def menu_ad(request):
@@ -64,25 +60,10 @@ def registar_vendedores(request):
 		print("guardado")
 		return redirect("/menu")
 
+	objects = Vendedor.objects.all()		
 
-
-
-
-	objects = Vendedor.objects.all()
-
-	for cont in objects:	
-		
-		objects_cedula=cont.Cedula
-		objects_nombre=cont.Nombre
-		objects_direccion=cont.direccion
-		objects_telefono=cont.telefono
-			
 	ctx = {
 		"objects":objects,
-		"objects_cedula":objects_cedula,
-		"objects_nombre":objects_nombre,
-		"objects_direccion":objects_direccion,
-		"objects_telefono":objects_telefono,
 		'register_form': register_form
 	}
 
@@ -178,28 +159,20 @@ def Registro_clientes(request):
 def Consulta(request):
 	register_form=Consulta_nombre(request.POST or None)
 	
-	if register_form.is_valid():
-		
-		print ("entro")
-		form_data = register_form.cleaned_data
-		title = form_data.get("titulo_Producto")
-		print (title)
-
-
 	objects = Producto.objects.all()
 
-	for cont in objects:	
-		objects_id=cont.idProducto
-		objects_nombre=cont.Nombre
-		objects_cantidad=cont.Cantidad
-		objects_precio=cont.Precio
+	if register_form.is_valid() and request.method == 'POST':
+		
+		form_data = register_form.cleaned_data
+		title = form_data.get("Nombre")
+		objects =Producto.objects.filter(Nombre=title)
+		print (title)
+	
+
 			
 	ctx = {
 		"objects":objects,
-		"objects_id":objects_id,
-		"objects_nombre":objects_nombre,
-		"objects_cantidad":objects_cantidad,
-		"objects_precio":objects_precio,
+		
 		'register_form': register_form
 	}
 	return render(request, "consulta.html", ctx)
