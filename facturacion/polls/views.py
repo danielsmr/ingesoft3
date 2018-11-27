@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from .forms import Login_Form, Consulta_nombre, Registro, Login_ven, Vendedor_form, Factura_form
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
-from .models import Producto, Cliente, Vendedor,Factura,Total,articulo
+from .models import Producto, Cliente, Vendedor,Factura,articulo
 from django.shortcuts import redirect
 import json
 
@@ -109,31 +109,56 @@ def inicio(request):
 	return render(request, "cajero.html", ctx)
 
 
-def Registro_ventas(request):
+def tem_regis(request):
+	ctx={}
+	objects = Producto.objects.all()
+	ctx={'objects' : objects}
+	return render (request,"registrar_articulos.html",ctx)
+
+def regis_articulos(request, idProducto):
+
+	Artic = articulo.objects.all()
+
+	if len(Artic) == 0:
+		prod= Producto.objects.get(idProducto = idProducto)
+		articuloc = articulo.objects.create(idProducto = prod, Cantidad = "1")
+	else:
+		articuloc= articulo.objects.get(idProducto = idProducto)
+		articuloc.Cantidad=str(int(articuloc.Cantidad)+1)
+		articuloc.save()
+
+	return redirect("/registro_v/" + str(articuloc.idarticulo))
+
+	
+
+def Registro_ventas(request, idarticulo):
 	ctx = {}
 	register_form = Factura_form(request.POST or None)
 
 	if register_form.is_valid():
+		
 		print("entro")
 		form_data = register_form.cleaned_data
-
-
 		NumeroFactura = form_data.get("NumeroFactura")
 		nitEmpresa = form_data.get("nitEmpresa")
 		idCliente = form_data.get("idCliente")
 		Nombre = form_data.get("Nombre")
-		print(Nombre)
 		direccion = form_data.get("direccion")
-		print(direccion)
 		telefono = form_data.get("telefono")
 		mediopago=form_data.get("mediopago")
-		cedula_v="1088341899"
-		idarticulo=form_data.get("NumeroFactura")
-		factura = Factura.objects.create(NumeroFactura=NumeroFactura,nitEmpresa=nitEmpresa,idCliente=idCliente, Nombre=Nombre,  direccion=direccion,  telefono=telefono,mediopago=mediopago,cedula_v=cedula_v)
+		art = articulo.objects.get(idarticulo=idarticulo)
+		
+		
+		total = int(art.Cantidad)*int(art.idProducto.Precio)
+
+
+		cedula_v=Vendedor.objects.get(Cedula="1088341899")
+		factura = Factura.objects.create(NumeroFactura=NumeroFactura,nitEmpresa=nitEmpresa,idCliente=idCliente,Nombre=Nombre,direccion=direccion,telefono=telefono,mediopago=mediopago,idarticulo= art,total=total,cedula_v=cedula_v)
+
 		print("guardado")
 		return redirect("/menu")
 	else:
-		print("Chupelo")
+		print("salio")
 	
 
 

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Producto, Cliente,Vendedor,Factura,Total,articulo
+from .models import Producto, Cliente,Vendedor,Factura,articulo
 
 class Login_Form(forms.Form):
 	username = forms.CharField(max_length=50)

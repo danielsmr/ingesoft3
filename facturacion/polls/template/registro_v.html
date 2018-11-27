@@ -21,7 +21,7 @@
 
    <body class="body">
     <div class="container-fluid">
-      <form method="POST" id="register_form" action="{% url 'Registro_v' %}">{% csrf_token %}
+      <form method="POST" id="register_form">{% csrf_token %}
                  
                   <h2 class="col-sm-offset-5"><b >Registrar Ventas</b></h2><br>
 
@@ -29,19 +29,19 @@
                     <div class="form-group row">
                       <label for="NumeroFactura" class="col-sm-3 control-label"># Factura</label>
                       <div class="col-sm-8">
-                          <input name="NumeroFactura" type="text" id="NumeroFactura" value="315448"class="form-control" required>
+                          <input name="NumeroFactura" type="text" id="NumeroFactura" value="{{ NumeroFactura }}"class="form-control" required>
                       </div>
                     </div>
                     
                     <div class="form-group row">
                       <label for="nitEmpresa" class="col-sm-3 control-label">Nit Empresa</label>
                       <div class="col-sm-8">
-                          <input name="nitEmpresa" type="text" id="nitEmpresa" value="29292913"class="form-control" disabled required>
+                          <input name="nitEmpresa" type="text" id="nitEmpresa" value="29292913"class="form-control" required>
                       </div>
                     </div>
                     
                     <div class="form-group row">
-                      <label for="cedula" class="col-sm-3 control-label">Cedula</label>
+                      <label for="idCliente" class="col-sm-3 control-label">Cedula</label>
                       <div class="col-sm-8">
                           <input name="idCliente" type="text" id="idCliente" placeholder="Cedula" value="1088341899" class="form-control" required>
                       </div>
@@ -50,7 +50,7 @@
 
                     <div class="form-group row">
 
-                        <label for="firstName" class="col-sm-3 control-label">Nombre Completo</label>
+                        <label for="Nombre" class="col-sm-3 control-label">Nombre Completo</label>
                         <div class="col-sm-8">
                             <input type="text" name="Nombre" id="Nombre" placeholder="Nombre" class="form-control" autofocus value="nombreja" >
                         </div>
@@ -64,30 +64,30 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="email" class="col-sm-3 control-label">Telefono</label>
+                        <label for="telefono" class="col-sm-3 control-label">Telefono</label>
                         <div class="col-sm-8">
                             <input name="telefono" type="text" id="telefono" placeholder="Telefono" class="form-control" value="1231233">
                         </div>
                     </div>
 
                      <div class="form-group row">
-                        <label for="" class="col-sm-3 control-label">Medio de Pago</label>
+                        <label for="mediopago" class="col-sm-3 control-label">Medio de Pago</label>
                         <div class="col-sm-8">
                             <lebel class="col-sm-2">1.Efectivo</lebel>
                              <lebel class="col-sm-2">2.Tarjeta</lebel>
-                            <input name="mediopago" id="mediopago" type="text" placeholder="" class="form-control" value="1">
+                            <input name="mediopago" id="mediopago" type="text" placeholder="Medio" class="form-control" value="1">
                         </div>
                     </div>
 
                   
                     <div class="form-group ">
                         <div class="col-sm-8 col-sm-offset-3">
-                            <button id="btnhabilita" type="submit"  class="btn btn-success btn-block">Siguinte</button>
+                            <button id="btnhabilita" type="submit"  class="btn btn-success btn-block">Siguiente</button>
                         </div>
                     </div> 
               </form>
       <div>
-
+        {{ register_form.errors }}
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>

@@ -11,5 +11,7 @@ urlpatterns = [
     path('adios', views.Sign_out, name="Adios"),
     path('consulta', views.Consulta, name="Consulta"),
     path('registro_c', views.Registro_clientes, name="Registro_c"),
-    path('registro_v', views.Registro_ventas, name="Registro_v")
+    path('registro_articulos/<idProducto>', views.regis_articulos, name="registro_articulos"),
+    path('articulos',views.tem_regis, name="Articulo"),
+    path('registro_v/<idarticulo>', views.Registro_ventas, name="Registro_v")
 ]

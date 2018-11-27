@@ -41,24 +41,14 @@ class Cliente(models.Model):
 		return self.first_name
 
 class articulo(models.Model):
-	
-	idarticulo = models.CharField(primary_key=True, max_length=20)#segundos
+	idarticulo = models.AutoField(primary_key=True, max_length=20)#segundos
 	idProducto = models.ForeignKey('Producto',max_length=20,on_delete=models.CASCADE,)#segundos
-
+	Cantidad= models.CharField(max_length=50)
 	class meta:
 		verbose_name= u'Articulo'
 		verbose_name_plural=u'Articulos'
 
-class Total(models.Model):
-	idtotal = models.CharField(primary_key=True, max_length=50)
-	subtotal= models.CharField(max_length=50)
-	iva= models.CharField(max_length=50)
-	total_t=models.CharField(max_length=50)
-
-	class meta:
-		"""docstring for meta"""
-		verbose_name=u'Total'
-		verbose_name_plural=u'Totales'			
+				
 
 class Factura(models.Model):
 	NumeroFactura = models.CharField( primary_key=True, max_length=20, unique=True)#segundos
@@ -69,17 +59,10 @@ class Factura(models.Model):
 	direccion= models.CharField(max_length=50)
 	telefono = models.CharField(max_length=50)
 	idarticulo= models.ForeignKey('articulo', max_length=20,on_delete=models.CASCADE,)
-	idtotal=models.ForeignKey('Total', max_length=50,on_delete=models.CASCADE,)
+	total=models.CharField(max_length=50)
 	mediopago=models.CharField(max_length=50)
 	cedula_v=models.ForeignKey('Vendedor', max_length=50,on_delete=models.CASCADE,)
 	
 	class meta:
 		verbose_name= u'Factura'
 		verbose_name_plural=u'Facturas'
-
-
-
-
-
-
-
