@@ -133,6 +133,7 @@ def regis_articulos(request, idProducto):
 
 def Registro_ventas(request, idarticulo):
 	ctx = {}
+	
 	register_form = Factura_form(request.POST or None)
 
 	if register_form.is_valid():
@@ -156,18 +157,19 @@ def Registro_ventas(request, idarticulo):
 		factura = Factura.objects.create(NumeroFactura=NumeroFactura,nitEmpresa=nitEmpresa,idCliente=idCliente,Nombre=Nombre,direccion=direccion,telefono=telefono,mediopago=mediopago,idarticulo= art,total=total,cedula_v=cedula_v)
 
 		print("guardado")
-		return redirect("/menu")
+		return redirect("/impre_fac")
 	else:
 		print("salio")
 	
 
 
 	ctx = {
+	
 		'register_form' : register_form,
-	}
+		}
 	return render(request, "registro_v.html", ctx)
 
-
+ 
 def Registro_clientes(request):
 	ctx = {}
 	register_form = Registro(request.POST or None)
@@ -215,6 +217,14 @@ def Registro_clientes(request):
 
 	return render(request, "registo_c.html", ctx)
 
+def impre_factura(request):
+	
+	objects=Factura.objects.first()
+	ar=articulo
+	print (objects.idarticulo.idProducto.Nombre)
+
+	ctx={'objects' : objects}
+	return	render(request, "fac_imp.html",ctx)
 
 def Consulta(request):
 	register_form=Consulta_nombre(request.POST or None)
