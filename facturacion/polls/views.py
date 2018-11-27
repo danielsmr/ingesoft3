@@ -2,10 +2,10 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http import HttpResponse
-from .forms import Login_Form, Consulta_nombre, Registro, Login_ven, Vendedor_form
+from .forms import Login_Form, Consulta_nombre, Registro, Login_ven, Vendedor_form, Factura_form
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
-from .models import Producto, Cliente, Vendedor
+from .models import Producto, Cliente, Vendedor,Factura,Total,articulo
 from django.shortcuts import redirect
 import json
 
@@ -111,7 +111,35 @@ def inicio(request):
 
 def Registro_ventas(request):
 	ctx = {}
+	register_form = Factura_form(request.POST or None)
+
+	if register_form.is_valid():
+		print("entro")
+		form_data = register_form.cleaned_data
+
+
+		NumeroFactura = form_data.get("NumeroFactura")
+		nitEmpresa = form_data.get("nitEmpresa")
+		idCliente = form_data.get("idCliente")
+		Nombre = form_data.get("Nombre")
+		print(Nombre)
+		direccion = form_data.get("direccion")
+		print(direccion)
+		telefono = form_data.get("telefono")
+		mediopago=form_data.get("mediopago")
+		cedula_v="1088341899"
+		idarticulo=form_data.get("NumeroFactura")
+		factura = Factura.objects.create(NumeroFactura=NumeroFactura,nitEmpresa=nitEmpresa,idCliente=idCliente, Nombre=Nombre,  direccion=direccion,  telefono=telefono,mediopago=mediopago,cedula_v=cedula_v)
+		print("guardado")
+		return redirect("/menu")
+	else:
+		print("Chupelo")
 	
+
+
+	ctx = {
+		'register_form' : register_form,
+	}
 	return render(request, "registro_v.html", ctx)
 
 

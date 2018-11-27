@@ -25,57 +25,68 @@
                  
                   <h2 class="col-sm-offset-5"><b >Registrar Ventas</b></h2><br>
 
-                   <div class="form-group row">
-                      <label for="nitEmpresa" class="col-sm-3 control-label">Nit Empresa</label>
-                      <div class="col-sm-8">
-                          <input name="nitEmpresa" type="text" id="nitEmpresa" value="29292913"class="form-control" disabled required>
-                      </div>
-                    </div>
+                   
                     <div class="form-group row">
                       <label for="NumeroFactura" class="col-sm-3 control-label"># Factura</label>
                       <div class="col-sm-8">
                           <input name="NumeroFactura" type="text" id="NumeroFactura" value="315448"class="form-control" required>
                       </div>
                     </div>
-                     <div class="form-group row">
+                    
+                    <div class="form-group row">
+                      <label for="nitEmpresa" class="col-sm-3 control-label">Nit Empresa</label>
+                      <div class="col-sm-8">
+                          <input name="nitEmpresa" type="text" id="nitEmpresa" value="29292913"class="form-control" disabled required>
+                      </div>
+                    </div>
+                    
+                    <div class="form-group row">
                       <label for="cedula" class="col-sm-3 control-label">Cedula</label>
                       <div class="col-sm-8">
-                          <input name="cedula" type="text" id="cedula" placeholder="Cedula" value="" class="form-control" required>
+                          <input name="idCliente" type="text" id="idCliente" placeholder="Cedula" value="1088341899" class="form-control" required>
                       </div>
-                  </div>
-                  <div style="display:none">
+                    </div>
+              
+
                     <div class="form-group row">
 
                         <label for="firstName" class="col-sm-3 control-label">Nombre Completo</label>
-                        <div class="col-sm-4">
-                            <input type="text" name="first_name" id="firstName" placeholder="Nombre" class="form-control" autofocus >
-                        </div>
-                        <div class="col-sm-4">
-                            <input type="text" name="last_name" id="lastName" placeholder="Apellido" class="form-control" autofocus >
+                        <div class="col-sm-8">
+                            <input type="text" name="Nombre" id="Nombre" placeholder="Nombre" class="form-control" autofocus value="nombreja" >
                         </div>
                     </div>
                    
                     <div class="form-group row">
                         <label for="direccion" class="col-sm-3 control-label">Direccion</label>
                         <div class="col-sm-8">
-                            <input name="direccion" type="text" id="direccion" placeholder="Direccion" class="form-control" >
+                            <input name="direccion" type="text" id="direccion" placeholder="Direccion" class="form-control" value="mz8 cs 15">
                         </div>
                     </div>
+
                     <div class="form-group row">
-                        <label for="email" class="col-sm-3 control-label">Email</label>
+                        <label for="email" class="col-sm-3 control-label">Telefono</label>
                         <div class="col-sm-8">
-                            <input name="email" type="text" id="email" placeholder="Email" class="form-control">
+                            <input name="telefono" type="text" id="telefono" placeholder="Telefono" class="form-control" value="1231233">
                         </div>
                     </div>
-                  </div>
+
+                     <div class="form-group row">
+                        <label for="" class="col-sm-3 control-label">Medio de Pago</label>
+                        <div class="col-sm-8">
+                            <lebel class="col-sm-2">1.Efectivo</lebel>
+                             <lebel class="col-sm-2">2.Tarjeta</lebel>
+                            <input name="mediopago" id="mediopago" type="text" placeholder="" class="form-control" value="1">
+                        </div>
+                    </div>
+
+                  
                     <div class="form-group ">
                         <div class="col-sm-8 col-sm-offset-3">
                             <button id="btnhabilita" type="submit"  class="btn btn-success btn-block">Siguinte</button>
                         </div>
-                    </div>
-                  </div>  
+                    </div> 
               </form>
-
+      <div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -89,12 +100,5 @@
 
 
 <script type="text/javascript">
-  function verificar2(){
-    var p1 = document.getElementById('paso3');
-    var p2 = document.getElementById('paso4');
-    if(p1.style.display == "block"){
-      p1.style.display = "none";
-      p2.style.display = "block";
-  }
-}
+  
 </script>

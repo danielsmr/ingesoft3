@@ -1,5 +1,5 @@
 from django import forms
-from .models import Producto, Cliente,Vendedor
+from .models import Producto, Cliente,Vendedor,Factura,Total,articulo
 
 class Login_Form(forms.Form):
 	username = forms.CharField(max_length=50)
@@ -35,3 +35,16 @@ class Vendedor_form(forms.Form):
 	class Meta:
 		model = Vendedor
 		fields=['Cedula', 'Nombre', 'direccion', 'telefono']
+
+class Factura_form(forms.Form):
+	NumeroFactura = forms.CharField(max_length=20)#segundos
+	nitEmpresa = forms.CharField(max_length=50)
+	idCliente = forms.CharField(max_length=50)
+	Nombre = forms.CharField(max_length=50)
+	direccion= forms.CharField(max_length=50)
+	telefono = forms.CharField(max_length=50)
+	mediopago=forms.CharField(max_length=50)
+	class meta:
+		model= Factura
+		fields =['NumeroFactura','nitEmpresa','idCliente','Nombre','direccion','telefono','mediopago']
+
